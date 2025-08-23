@@ -10,26 +10,25 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>generator</artifactId>
+    <artifactId>assistant</artifactId>
 
-    <!-- 项目管理 -->
     <dependencies>
         <!-- 公共依赖 -->
         <dependency>
             <groupId>org.mdd</groupId>
             <artifactId>common</artifactId>
         </dependency>
-        <!-- collections工具类 -->
+        
+        <!-- Spring Boot -->
         <dependency>
-            <groupId>commons-collections</groupId>
-            <artifactId>commons-collections</artifactId>
-            <version>3.2.2</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
         </dependency>
-        <!--velocity代码生成使用模板 -->
+        
+        <!-- Spring Web -->
         <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity-engine-core</artifactId>
-            <version>2.3</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
     </dependencies>
 

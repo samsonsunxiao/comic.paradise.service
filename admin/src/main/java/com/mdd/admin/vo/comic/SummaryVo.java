@@ -1,4 +1,4 @@
-package com.mdd.admin.vo.game;
+package com.mdd.admin.vo.comic;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -8,20 +8,20 @@ import java.io.Serializable;
 
 
 @Data
-@ApiModel("Game列表")
-public class GameNameVo implements Serializable {
+@ApiModel("漫画标题列表")
+public class SummaryVo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "主键")
     private Integer id;
 
-    @ApiModelProperty(value = "name")
-    private String name;
+    @ApiModelProperty(value = "漫画标题")
+    private String title;
 
-    @ApiModelProperty("游戏ID")
-    private String gid = "";
+    @ApiModelProperty("漫画ID")
+    private String comicId = "";
 
     @ApiModelProperty("缩略图")
-    private String image = "";
+    private String coverImage = "";
 }

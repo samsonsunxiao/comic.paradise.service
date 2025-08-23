@@ -1,4 +1,4 @@
-package com.mdd.common.entity.module;
+package com.mdd.common.entity.comic;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -11,9 +11,9 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 @Data
-@ApiModel("Module")
-@TableName(value = "xmod_modules") 
-public class XModule implements Serializable {
+@ApiModel("Category")
+@TableName(value = "comic_category") 
+public class Category implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
@@ -21,9 +21,9 @@ public class XModule implements Serializable {
     @ApiModelProperty(value = "主键")
     private Integer id;
 
-    @ApiModelProperty(value = "modid")
-    private String moduleid;
+    @ApiModelProperty(value = "分类ID")
+    private String categoryId;
 
     @ApiModelProperty(value = "标题")
-    private String name;
+    private String title;
 }

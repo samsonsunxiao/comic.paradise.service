@@ -50,7 +50,7 @@ public class WxPayConfiguration {
                 .eq("name", "app_id")
                 .last("limit 1"));
 
-        String paramJson = StringUtils.isNull(config.getConfig()) ? "{}" : config.getConfig().toString();
+        String paramJson = (config == null || StringUtils.isNull(config.getConfig())) ? "{}" : config.getConfig().toString();
         Map<String, String> params = MapUtils.jsonToMap(paramJson);
         String appId = StringUtils.isNull(systemConfig) ? "" : systemConfig.getValue();
         String mchId = params.getOrDefault("mch_id", "");
@@ -89,7 +89,7 @@ public class WxPayConfiguration {
                 .eq("type", "oa_setting")
                 .last("limit 1"));
 
-        String paramJson = StringUtils.isNull(config.getConfig()) ? "{}" : config.getConfig().toString();
+        String paramJson = (config == null || StringUtils.isNull(config.getConfig())) ? "{}" : config.getConfig().toString();
         Map<String, String> params = MapUtils.jsonToMap(paramJson);
         String appId = StringUtils.isNull(systemConfig) ? "" : systemConfig.getValue();
         String mchId = params.getOrDefault("mch_id", "");

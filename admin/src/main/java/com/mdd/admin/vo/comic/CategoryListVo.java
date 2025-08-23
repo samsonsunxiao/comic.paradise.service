@@ -1,4 +1,4 @@
-package com.mdd.admin.vo.module;
+package com.mdd.admin.vo.comic;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -8,20 +8,20 @@ import java.io.Serializable;
 
 
 @Data
-@ApiModel("Module 列表")
-public class XModuleListVo implements Serializable {
+@ApiModel("Category 列表")
+public class CategoryListVo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
     @ApiModelProperty(value = "主键")
     private Integer id;
 
-    @ApiModelProperty(value = "modid")
-    private String moduleid;
+    @ApiModelProperty(value = "分类ID")
+    private String categoryId;
 
     @ApiModelProperty(value = "标题")
-    private String name;
+    private String title;
     
-    @ApiModelProperty(value = "上架游戏数")
-    private Long gameCount = Long.valueOf(0);
+    @ApiModelProperty(value = "漫画数")
+    private Long count = Long.valueOf(0);
 }

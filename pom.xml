@@ -5,7 +5,7 @@
 
     <!-- 模块信息 -->
     <groupId>org.mdd</groupId>
-    <artifactId>xmod-server</artifactId>
+    <artifactId>comic-server</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0</version>
     <modelVersion>4.0.0</modelVersion>
@@ -14,6 +14,7 @@
         <module>front</module>
         <module>common</module>
         <module>generator</module>
+        <module>assistant</module>
     </modules>
 
     <!-- 特性信息 -->
@@ -255,6 +256,41 @@
                 <groupId>org.mdd</groupId>
                 <artifactId>common</artifactId>
                 <version>${like.version}</version>
+            </dependency>
+
+            <!-- 代码生成 -->
+            <dependency>
+                <groupId>org.mdd</groupId>
+                <artifactId>generator</artifactId>
+                <version>${like.version}</version>
+            </dependency>
+
+            <!-- Jackson annotations -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.13.0</version>
+            </dependency>
+
+            <!-- Validation API -->
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>2.0.1.Final</version>
+            </dependency>
+
+            <!-- Spring Web -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>2.6.4</version>
+            </dependency>
+            
+            <!-- Spring Boot -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+                <version>2.6.4</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

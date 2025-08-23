@@ -1,24 +1,23 @@
-package com.mdd.admin.service;
-
-import com.mdd.admin.vo.module.XModuleDetailVo;
-import com.mdd.admin.vo.module.XModuleListVo;
+package com.mdd.admin.service.comic;
 
 import java.util.List;
 
-import com.mdd.common.entity.module.XModule;
+import com.mdd.common.entity.comic.Category;
+import com.mdd.admin.validate.comic.CategoryValidate;
 import com.mdd.admin.validate.commons.PageValidate;
-import com.mdd.admin.validate.module.XModuleSaveValidate;
+import com.mdd.admin.vo.comic.CategoryDetailVo;
+import com.mdd.admin.vo.comic.CategoryListVo;
 import com.mdd.common.core.PageResult;
 
 
 /**
  * MOD服务接口类
  */
-public interface IModuleService {
+public interface ICategoryService {
     /**
     * 所有模块列表
     */
-    List<XModule> all();
+    List<Category> all();
     
     /**
      * MOD资源列表
@@ -28,7 +27,7 @@ public interface IModuleService {
      * @return PageResult<ArticleListVo>
      * @author fzr
      */
-    PageResult<XModuleListVo> list(PageValidate pageValidate);
+    PageResult<CategoryListVo> list(PageValidate pageValidate);
 
     /**
      * module详情
@@ -36,7 +35,7 @@ public interface IModuleService {
      * @param moduleid 
      * @author fzr
      */
-    XModuleDetailVo detail(String moduleid);
+    CategoryDetailVo detail(String category_id);
     
      /**
      * MODULE编辑保存
@@ -44,7 +43,7 @@ public interface IModuleService {
      * @param saveValidate 参数
      * @author fzr
      */
-    void save(XModuleSaveValidate saveValidate);
+    void save(CategoryValidate saveValidate);
 
     void del(Integer id);
 }

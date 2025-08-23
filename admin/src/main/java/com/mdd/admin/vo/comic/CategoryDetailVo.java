@@ -1,29 +1,26 @@
-package com.mdd.admin.vo.module;
+package com.mdd.admin.vo.comic;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-
 import java.io.Serializable;
 import java.util.List;
 
-import com.mdd.admin.vo.game.GameNameVo;
-
 @Data
-@ApiModel("Module")
-public class XModuleDetailVo implements Serializable {
+@ApiModel("Category")
+public class CategoryDetailVo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
     @ApiModelProperty(value = "主键")
     private Integer id;
 
-    @ApiModelProperty(value = "modid")
-    private String moduleid;
+    @ApiModelProperty(value = "分类ID")
+    private String categoryId;
 
     @ApiModelProperty(value = "名称")
-    private String name;
+    private String title;
 
-     @ApiModelProperty(value = "游戏列表")
-    private List<GameNameVo>  games;
+    @ApiModelProperty(value = "漫画列表")
+    private List<SummaryVo>  comics;
 }

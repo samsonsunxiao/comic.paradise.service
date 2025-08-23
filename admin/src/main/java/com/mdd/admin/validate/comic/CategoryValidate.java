@@ -1,4 +1,4 @@
-package com.mdd.admin.validate.module;
+package com.mdd.admin.validate.comic;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -9,21 +9,19 @@ import java.io.Serializable;
 import java.util.List;
 
 @Data
-@ApiModel("Module 保存")
-public class XModuleSaveValidate implements Serializable {
+@ApiModel("分类 保存")
+public class CategoryValidate implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
-    @NotEmpty(message = "moduleid不能为空")
-    @Length(min = 1, max = 100, message = "moduleid不能大于100个字符")
-    @ApiModelProperty(value = "moduleid")
-    private String moduleid;
+    @ApiModelProperty(value = "分类ID")
+    private String categoryId;
     
     @NotEmpty(message = "名称不能为空")
     @Length(min = 1, max = 256, message = "名称不能大于256个字符")
     @ApiModelProperty(value = "名称", required = true)
-    private String name;
+    private String title;
     
-    @ApiModelProperty(value = "游戏ID集合")
-    private List<String> games;
+    @ApiModelProperty(value = "漫画ID集合")
+    private List<String> comics;
 }
