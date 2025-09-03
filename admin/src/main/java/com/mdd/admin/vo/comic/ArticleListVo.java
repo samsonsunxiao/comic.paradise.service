@@ -16,6 +16,9 @@ public class ArticleListVo implements Serializable {
     @ApiModelProperty(value = "主键")
     private Integer id;
 
+    @ApiModelProperty(value = "漫画ID")
+    private String comicId;
+
     @ApiModelProperty(value = "分类")
     private String category;
 
@@ -29,7 +32,10 @@ public class ArticleListVo implements Serializable {
     private Integer state;
 
     @ApiModelProperty(value = "封面")
-    private Integer coverImage;
+    private String coverImage;
+
+    @ApiModelProperty(value = "漫画类型")
+    private String type;
     
     @ApiModelProperty(value = "章节数")
     private Long chapterCount = Long.valueOf(0);

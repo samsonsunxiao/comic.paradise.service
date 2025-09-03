@@ -30,13 +30,13 @@ public class CategoryController {
 
     @Resource
     @Autowired
-    ICategoryService iModuleService;
+    ICategoryService iCategoryService;
     
     @NotLogin
     @GetMapping("/all")
-    @ApiOperation(value="模块列表")
+    @ApiOperation(value="分类列表")
     public AjaxResult<List<Category>> all() {
-        List<Category> listModule = iModuleService.all();
+        List<Category> listModule = iCategoryService.all();
         return AjaxResult.success(listModule);
     }
     
@@ -44,7 +44,7 @@ public class CategoryController {
     @GetMapping("/list")
     @ApiOperation(value="资源列表")
     public AjaxResult<PageResult<CategoryListVo>> list(@Validated PageValidate pageValidate) {
-        PageResult<CategoryListVo> list = iModuleService.list(pageValidate);
+        PageResult<CategoryListVo> list = iCategoryService.list(pageValidate);
         return AjaxResult.success(list);
     }
 
@@ -52,7 +52,7 @@ public class CategoryController {
     @GetMapping("/detail")
     @ApiOperation(value="详情")
     public AjaxResult<CategoryDetailVo> detail(@Validated @IDMust() @RequestParam("moduleid") String moduleid) {
-        CategoryDetailVo detail = iModuleService.detail(moduleid);
+        CategoryDetailVo detail = iCategoryService.detail(moduleid);
         return AjaxResult.success(detail);
     }
     
@@ -60,7 +60,7 @@ public class CategoryController {
     @PostMapping("/save")
     @ApiOperation(value="保存")
     public AjaxResult<Object> save(@Validated @RequestBody CategoryValidate saveValidate) {
-        iModuleService.save(saveValidate);
+        iCategoryService.commitBatchComics(saveValidate);
         return AjaxResult.success();
     }
     
@@ -69,7 +69,7 @@ public class CategoryController {
     @PostMapping("/del")
     @ApiOperation(value="删除")
     public AjaxResult<Object> del(@Validated @RequestBody IdValidate idValidate) {
-        iModuleService.del(idValidate.getId());
+        iCategoryService.del(idValidate.getId());
         return AjaxResult.success();
     }
 }

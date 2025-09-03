@@ -15,6 +15,10 @@ like:
     enabled: true
     # 请求前缀
     pathMapping: /dev-api
+  # Assistant服务配置
+  assistant:
+    service:
+      url: http://localhost:8080
 
 # 服务配置
 server:

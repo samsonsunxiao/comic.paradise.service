@@ -11,9 +11,9 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 @Data
-@ApiModel("Item")
-@TableName(value = "comic_item") 
-public class Item implements Serializable {
+@ApiModel("Tag")
+@TableName(value = "comic_tag_article") 
+public class ArticleTag implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
@@ -21,12 +21,9 @@ public class Item implements Serializable {
     @ApiModelProperty(value = "主键")
     private Integer id;
 
-    @ApiModelProperty(value = "图片的URI")
-    private String uri;
+    @ApiModelProperty(value = "标签ID")
+    private String tagId;
 
     @ApiModelProperty(value = "漫画ID")
     private String comicId;
-
-    @ApiModelProperty(value = "章节码")
-    private String chapterNo;
 }

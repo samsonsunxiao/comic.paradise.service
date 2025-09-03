@@ -43,7 +43,9 @@ public interface ICategoryService {
      * @param saveValidate 参数
      * @author fzr
      */
-    void save(CategoryValidate saveValidate);
+    void commitBatchComics(CategoryValidate saveValidate);
+
+    void commitSingleComic(CategoryValidate saveValidate, String comicId);
 
     void del(Integer id);
 }

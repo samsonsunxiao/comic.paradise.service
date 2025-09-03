@@ -10,7 +10,7 @@ import com.mdd.common.core.PageResult;
 import com.mdd.common.entity.game.GameInfo;
 import com.mdd.common.entity.mod.XMod;
 import com.mdd.common.mapper.xmod.XModMapper;
-import com.mdd.common.mapper.comic.ArticleMapper;
+import com.mdd.common.mapper.comic.ComicArticleMapper;
 import com.mdd.common.mapper.xmod.XModImagesMapper;
 import com.mdd.front.service.IXModSearch;
 import com.mdd.front.validate.common.PageValidate;
@@ -22,7 +22,7 @@ import java.util.*;
 @Service
 public class XModSearchService implements IXModSearch {
     @Autowired
-    ArticleMapper gameMapper;
+    ComicArticleMapper gameMapper;
 
     @Autowired
     XModMapper modMapper;

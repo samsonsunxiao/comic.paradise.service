@@ -14,9 +14,6 @@ public class CategoryValidate implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
-    @ApiModelProperty(value = "分类ID")
-    private String categoryId;
-    
     @NotEmpty(message = "名称不能为空")
     @Length(min = 1, max = 256, message = "名称不能大于256个字符")
     @ApiModelProperty(value = "名称", required = true)

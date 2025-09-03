@@ -14,7 +14,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 @Data
 @ApiModel("漫画详情")
 @TableName(value = "comic_article") 
-public class Article implements Serializable {
+public class ComicArticle implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
@@ -58,6 +58,6 @@ public class Article implements Serializable {
     @ApiModelProperty(value = "漫画状态，offline-下架，online-上架")
     private String status;
 
-    @ApiModelProperty(value = "是否需要VIP下载")
-    private Boolean vip;
+    @ApiModelProperty(value = "VIP等级")
+    private Integer vip;
 }

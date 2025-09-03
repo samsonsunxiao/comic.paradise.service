@@ -15,7 +15,7 @@ import com.mdd.common.entity.game.XModuleGame;
 import com.mdd.common.entity.mod.XMod;
 import com.mdd.common.exception.OperateException;
 import com.mdd.common.mapper.xmod.XModMapper;
-import com.mdd.common.mapper.comic.ArticleMapper;
+import com.mdd.common.mapper.comic.ComicArticleMapper;
 import com.mdd.common.mapper.xmod.ModuleGameMapper;
 import com.mdd.common.mapper.xmod.XModImagesMapper;
 import com.mdd.common.util.ConfigUtils;
@@ -35,7 +35,7 @@ import java.util.*;
 @Service
 public class GameService implements IGameService {
     @Autowired
-    ArticleMapper gameMapper;
+    ComicArticleMapper gameMapper;
 
     @Autowired
     XModMapper modMapper;

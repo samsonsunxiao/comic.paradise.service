@@ -17,6 +17,9 @@ public class ArticleDetailVo implements Serializable {
     @ApiModelProperty(value = "主键")
     private Integer id;
 
+    @ApiModelProperty(value = "漫画ID")
+    private String comicId;
+
     @ApiModelProperty(value = "分类ID")
     private String categoryId;
 

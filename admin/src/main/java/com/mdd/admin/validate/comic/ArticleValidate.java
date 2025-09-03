@@ -37,10 +37,13 @@ public class ArticleValidate implements Serializable {
     private String type;
     
     @ApiModelProperty(value = "漫画状态，offline-下架，online-上架")
-    private String status;
+    private String status = "offline";
 
-    @ApiModelProperty(value = "是否需要VIP下载")
-    private Boolean vip;
+    @ApiModelProperty(value = "VIP等级")
+    private Integer vip = 0;
+
+    @ApiModelProperty(value = "标签集合")
+    private List<String> tags;
     
     @ApiModelProperty(value = "章节集合")
     private List<ChapterValidate> chapters;

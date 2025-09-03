@@ -55,6 +55,8 @@
         <aliyun-java.version>4.5.16</aliyun-java.version>
 
         <weixin.version>4.4.0</weixin.version>
+        <junit-jupiter.version>5.8.2</junit-jupiter.version>
+        <mockito.version>4.6.1</mockito.version>
     </properties>
 
     <!-- 依赖声明 -->
@@ -278,6 +280,14 @@
                 <artifactId>validation-api</artifactId>
                 <version>2.0.1.Final</version>
             </dependency>
+            
+            <!-- JUnit 5 -->
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <version>5.8.2</version>
+                <scope>test</scope>
+            </dependency>
 
             <!-- Spring Web -->
             <dependency>
@@ -291,6 +301,22 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter</artifactId>
                 <version>2.6.4</version>
+            </dependency>
+            
+            <!-- Spring Boot Test -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>2.6.4</version>
+                <scope>test</scope>
+            </dependency>
+            
+            <!-- Mockito -->
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>4.6.1</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

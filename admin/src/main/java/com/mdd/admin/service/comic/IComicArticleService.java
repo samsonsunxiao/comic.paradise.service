@@ -7,10 +7,11 @@ import com.mdd.admin.vo.comic.SummaryVo;
 import com.mdd.admin.vo.comic.ArticleListVo;
 import com.mdd.admin.vo.comic.ArticleDetailVo;
 import com.mdd.common.core.PageResult;
+import com.mdd.common.entity.comic.ComicItem;
 
 import java.util.*;
 
-public interface IArticleService {
+public interface IComicArticleService {
 
 
     /**
@@ -43,6 +44,8 @@ public interface IArticleService {
      * @author fzr
      */
     void save(ArticleValidate saveValidate);
+
+    PageResult<ComicItem> getItems(PageValidate pageValidate, String comicId, Integer chapterNo);
 
     void delete(String comicId);
 }

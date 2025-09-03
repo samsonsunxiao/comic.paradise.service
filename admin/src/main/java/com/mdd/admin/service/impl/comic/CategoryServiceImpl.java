@@ -11,12 +11,12 @@ import com.mdd.common.core.PageResult;
 import com.mdd.admin.vo.comic.CategoryDetailVo;
 import com.mdd.admin.vo.comic.CategoryListVo;
 import com.mdd.admin.vo.comic.SummaryVo;
-import com.mdd.common.entity.comic.Article;
+import com.mdd.common.entity.comic.ComicArticle;
 import com.mdd.common.entity.comic.Category;
 import com.mdd.common.entity.comic.CategoryArticle;
 import com.mdd.common.mapper.comic.CategoryMapper;
 import com.mdd.common.util.PinyinUtil;
-import com.mdd.common.mapper.comic.ArticleMapper;
+import com.mdd.common.mapper.comic.ComicArticleMapper;
 import com.mdd.common.mapper.comic.CategoryArticleMapper;
 import lombok.extern.slf4j.Slf4j;
 
@@ -41,7 +41,7 @@ public class CategoryServiceImpl implements ICategoryService {
     CategoryMapper categoryMapper;
 
     @Autowired
-    ArticleMapper articleMapper;
+    ComicArticleMapper comicArticleMapper;
 
     @Autowired
     CategoryArticleMapper categoryArticleMapper;
@@ -81,8 +81,8 @@ public class CategoryServiceImpl implements ICategoryService {
         for (Category item : iPage.getRecords()) {
             CategoryListVo vo = new CategoryListVo();
             BeanUtils.copyProperties(item, vo);
-            Long count = articleMapper
-                    .selectCount(new QueryWrapper<Article>().eq("category_id", item.getCategoryId()));
+            Long count = comicArticleMapper
+                    .selectCount(new QueryWrapper<ComicArticle>().eq("category_id", item.getCategoryId()));
             if (count != null) {
                 vo.setCount(count);
             }
@@ -103,12 +103,12 @@ public class CategoryServiceImpl implements ICategoryService {
                 new QueryWrapper<Category>()
                         .eq("category_id", category_id));
         Assert.notNull(model, "分类不存在");
-        MPJQueryWrapper<Article> mpjQueryWrapper = new MPJQueryWrapper<Article>()
-                .selectAll(Article.class)
+        MPJQueryWrapper<ComicArticle> mpjQueryWrapper = new MPJQueryWrapper<ComicArticle>()
+                .selectAll(ComicArticle.class)
                 .innerJoin("comic_category_article ca ON t.comic_id=ca.comic_id")
                 .innerJoin("comic_category c ON c.category_id=ca.category_id")
                 .eq("ca.category_id", category_id);
-        IPage<SummaryVo> iPage = articleMapper.selectJoinPage(
+        IPage<SummaryVo> iPage = comicArticleMapper.selectJoinPage(
                 new Page<>(0, -1),
                 SummaryVo.class,
                 mpjQueryWrapper);
@@ -118,22 +118,18 @@ public class CategoryServiceImpl implements ICategoryService {
         return moduleDetailVo;
     }
 
-    public void save(CategoryValidate saveValidate) {
-        Category model = null;
+    @Override
+    public void commitBatchComics(CategoryValidate saveValidate) {
         Boolean isNew = false;
-        if (saveValidate.getCategoryId() == null || saveValidate.getCategoryId().isEmpty()) {
-            isNew = true;
-            model = new Category();
-            String categoryId = PinyinUtil.convertToPinyin(saveValidate.getTitle());
-            Category temp = categoryMapper.selectOne(
+        String categoryId = PinyinUtil.convertToPinyin(saveValidate.getTitle());
+        Category model = categoryMapper.selectOne(
                     new QueryWrapper<Category>()
                             .eq("category_id", categoryId));
-            Assert.isNull(temp, "分类已存在");
+        if (model == null) {
+            isNew = true;
+            model = new Category();
             model.setCategoryId(categoryId);
         } else {
-            model = categoryMapper.selectOne(
-                    new QueryWrapper<Category>()
-                            .eq("category_id", saveValidate.getCategoryId()));
             Assert.notNull(model, "分类不存在");                
         }
         model.setTitle(saveValidate.getTitle());
@@ -143,7 +139,7 @@ public class CategoryServiceImpl implements ICategoryService {
             categoryMapper.updateById(model);
         }
         List<CategoryArticle> listCategoryArticle = categoryArticleMapper
-                .selectList(new QueryWrapper<CategoryArticle>().eq("category_id", saveValidate.getCategoryId()));
+                .selectList(new QueryWrapper<CategoryArticle>().eq("category_id", categoryId));
         List<String> comicIdList = listCategoryArticle.stream().map(CategoryArticle::getComicId).collect(Collectors.toList());
         List<String> listAdd = saveValidate.getComics().stream()
                 .filter(comicId1 -> comicIdList.stream().noneMatch(comicId2 -> comicId1.equals(comicId2))).collect(Collectors.toList());
@@ -158,7 +154,40 @@ public class CategoryServiceImpl implements ICategoryService {
                 .collect(Collectors.toList());
         for (String comicid : listDel) {
             categoryArticleMapper.delete(
-                    new QueryWrapper<CategoryArticle>().eq("comic_id", comicid).eq("category_id", saveValidate.getCategoryId()));
+                    new QueryWrapper<CategoryArticle>().eq("comic_id", comicid).eq("category_id", categoryId));
+        }
+    }
+
+    @Override
+    public void commitSingleComic(CategoryValidate saveValidate, String comicId)
+    {
+        Boolean isNew = false;
+        String categoryId = PinyinUtil.convertToPinyin(saveValidate.getTitle());
+        Category model = categoryMapper.selectOne(
+                    new QueryWrapper<Category>()
+                            .eq("category_id", categoryId));
+        if (model == null) {
+            isNew = true;
+            model = new Category();
+            model.setCategoryId(categoryId);
+        } else {
+            Assert.notNull(model, "分类不存在");                
+        }
+        model.setTitle(saveValidate.getTitle());
+        if (isNew) {
+            categoryMapper.insert(model);
+        } else {
+            categoryMapper.updateById(model);
+        }
+        CategoryArticle categoryArticle = categoryArticleMapper.selectOne(
+                new QueryWrapper<CategoryArticle>()
+                        .eq("comic_id", comicId)
+                        .eq("category_id", categoryId));
+        if (categoryArticle == null) {
+            categoryArticle = new CategoryArticle();
+            categoryArticle.setComicId(comicId);
+            categoryArticle.setCategoryId(categoryId);
+            categoryArticleMapper.insert(categoryArticle);
         }
     }
 
